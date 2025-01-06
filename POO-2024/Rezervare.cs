@@ -23,5 +23,12 @@ namespace POO_2024
             LocRez.Elibereaza();
         }
 
+        public override string ToString()
+        {
+    
+            return LocRez.ToString() + $"  de {Utilizator} ";
+
+        }
+
     }
 }

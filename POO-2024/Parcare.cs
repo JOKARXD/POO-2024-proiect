@@ -6,34 +6,20 @@ using System.Threading.Tasks;
 
 namespace POO_2024
 {
-    internal class Parcare : IMetodeLocuri
+    internal class Parcare 
     {
-        public List<LocParcare> LocuriParcare;
-        public string numeParcare {  get; set; }
+        public List<LocParcare> LocuriParcare {  get; set; }
 
-        public int locuriTotale {  get; set; }
-
-        public Parcare(string numeParcare, int locuriTotale)
+        public Parcare()
         {
             LocuriParcare = new List<LocParcare>();
-            this.numeParcare = numeParcare;
-            this.locuriTotale = locuriTotale;
         }
 
         public void VizualizareLocuri()
         {
-            foreach (var loc in LocuriParcare)
-            {
-                Console.WriteLine(loc);
-            }
+            Console.WriteLine("Aici o sa fie desenul cu charactere si caracterrul X si O pe care o sa le iau din fisier");
         }
-        public void AdaugareLocuri(Loc locP) 
-        { 
-            if(locP is LocParcare)
-            {
-                LocuriParcare.Add((LocParcare)locP);
-            }
-        }
+
 
 
 

@@ -9,7 +9,7 @@ namespace POO_2024
     internal interface IManager
     {
         public void VizualizareRezervariEchipa();
-        public void ModificareRezervariEchipa(int numarLoc,string utilizator,Loc locNou);
+        public void ModificareRezervariEchipa(int indexListaAngajat, string utilizator, int newNumber);
         public void StergereRezervareEchipa(int numarLoc);
 
     }

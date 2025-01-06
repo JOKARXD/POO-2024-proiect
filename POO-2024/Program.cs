@@ -6,6 +6,9 @@ public class Program
 {
     public static void Main() // testarea UI pentru clase                                
     {
+        Companie com1 = new Companie();
+        Parcare parc1 = new Parcare();
+
         while (true)
         {
 
@@ -18,12 +21,10 @@ public class Program
             switch (optiune)
             {
                 case 1:
-                    Console.WriteLine("Am creat un angajat");
-                    // Aici o sa creez un obiect de tip angajat
-                    //Si aici sunt lucrurile pe care le poate face un angajat
                     Console.WriteLine("Numele angajatului: ");
                     string nume=Console.ReadLine();
                     Angajat ang1 = new Angajat(nume);
+
                     bool ExistaAngajat = false;
                     while (!ExistaAngajat)
                     {
@@ -32,6 +33,7 @@ public class Program
                         Console.WriteLine("3.Vizualizare rezervari facute");
                         Console.WriteLine("4.Modificare rezervari facute");
                         Console.WriteLine("5.Stergere rezervari facute");
+                        Console.WriteLine("6.Console Clear");
                         Console.WriteLine("0.Back to login");
                         int optiuneAngajat = Convert.ToInt32(Console.ReadLine());
                         switch (optiuneAngajat)
@@ -61,19 +63,59 @@ public class Program
                                     Loc loc = new LocBirou(nrBirou);
 
                                     ang1.RezervareLoc(loc);
-                                } // adaugarea optiunea 3
+                                }
+                                else if(optiuneRez == 3)
+                                {
+                                    Console.WriteLine("La ce nr de parcare doresti sa faci: ");
+                                    int nrParc = Convert.ToInt32(Console.ReadLine());
+                                    Loc locP = new LocParcare(nrParc);
+                                    ang1.RezervareLoc(locP);
 
+                                    Console.WriteLine("La ce nr de birou doresti sa faci: ");
+                                    int nrBirou = Convert.ToInt32(Console.ReadLine());
+                                    Loc locB = new LocBirou(nrBirou);
+                                    ang1.RezervareLoc(locB);
+                                }
                                 break;
                             case 3:
-                                Console.WriteLine("Vizualizare rezervari facute de angajat");
+                                
                                 ang1.VizualizareRezervari();
        
                                 break;
                             case 4:
-                                Console.WriteLine("Modificare rezervari facute de angajat");
+                                
+                                ang1.VizualizareRezervari();
+                                Console.WriteLine("Ce rezervare vrei sa modifici vrei sa modifici ? ");
+
+                                int indexRez=Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine("Noul loc rezervat este:");
+
+                                int nrMod=Convert.ToInt32(Console.ReadLine());
+
+                                ang1.ModifRezervare(indexRez, nrMod);
+
+
+                                ang1.VizualizareRezervari();
+
                                 break;
                             case 5:
                                 Console.WriteLine("Stergere rezervari facute de angajat");
+
+                                ang1.VizualizareRezervari();
+                                Console.WriteLine("Ce rezervare vrei sa stergi vrei sa modifici ? ");
+
+                                int indexStergere = Convert.ToInt32(Console.ReadLine());
+
+                                ang1.StergereRezervare(indexStergere);
+
+
+                                ang1.VizualizareRezervari();
+
+
+                                break;
+
+                            case 6:
+                                Console.Clear();
                                 break;
                             case 0:
                                 ExistaAngajat = true;
@@ -96,6 +138,7 @@ public class Program
                         Console.WriteLine("7.Vizualizare rezervari facute de catre echipa");
                         Console.WriteLine("8.Modificare rezervari facute de catre echipa");
                         Console.WriteLine("9.Stergere rezervari facute de catre echipa");
+                        Console.WriteLine("10.Console Clear");
                         Console.WriteLine("0.Back to login");
                         int optiuneManager = Convert.ToInt32(Console.ReadLine());
                         switch (optiuneManager)
@@ -129,6 +172,9 @@ public class Program
                                 break;
                             case 9:
                                 Console.WriteLine("Stergere rezervari facute de catre echipa");
+                                break;
+                            case 10:
+                                Console.Clear();
                                 break;
                             case 0:
                                 ExistaManager = true;

@@ -24,13 +24,13 @@ namespace POO_2024
                 angajat.VizualizareRezervari();  
             }
         }
-        public void ModificareRezervariEchipa(int numarLoc, string utilizator,Loc locNou)
+        public void ModificareRezervariEchipa(int indexListaAngajat, string utilizator,int newNumber)
         {
             foreach (var angajat in echipa)
             {
                 if (angajat.Nume == utilizator)
                 {
-                    angajat.ModifRezervare(numarLoc, locNou);
+                    angajat.ModifRezervare(indexListaAngajat, newNumber);
                     break;
                 }
             }

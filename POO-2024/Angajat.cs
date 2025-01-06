@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace POO_2024
 {
-    internal class Angajat: User // totul la angajat merge
+    internal class Angajat: User // la modificare e dificil
     {
         public Angajat(string Nume): base(Nume) { }
 
@@ -19,36 +19,18 @@ namespace POO_2024
         {
             foreach(var rez in Rezervari)
             {
-                if(rez.LocRez is LocParcare)
-                {
-                    Console.WriteLine($"Loc parcare:{rez.LocRez.numar}- Rezervat de {rez.Utilizator}");
-                }
-                else
-                {
-                    Console.WriteLine($"Loc birou:{rez.LocRez.numar}- Rezervat de {rez.Utilizator}");
-                }
+                Console.WriteLine(rez);
             }
         }
-        public void ModifRezervare(int numarLoc,Loc locNou)
+        public void ModifRezervare(int indexLista,int newNumber)
         {
-            for(int i = 0; i < Rezervari.Count; i++) 
-            {
-                if (Rezervari[i].LocRez.numar == numarLoc)
-                {
-                    Rezervari[i] = new Rezervare(locNou, Nume);
-                    break;
-                }
-            }
+            Rezervari[indexLista-1].LocRez.numar = newNumber;
         }
-        public void StergereRezervare(int numarLoc) // undeva pe aici trebuie sa eliberezi locul 
+        public void StergereRezervare(int indexLista) // undeva pe aici trebuie sa eliberezi locul 
         {
-            for(int i = 0;i < Rezervari.Count; i++)
-            {
-                if(Rezervari[i].LocRez.numar == numarLoc)
-                {
-                    Rezervari.RemoveAt(i);
-                }
-            }
+            Rezervari[indexLista-1].LocRez.Elibereaza();
+            Rezervari.RemoveAt(indexLista - 1);
+
         }
     }
 }
