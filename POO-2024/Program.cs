@@ -37,7 +37,7 @@ public class Program
                         switch (optiuneAngajat)
                         {
                             case 1:
-                                Console.WriteLine("Vizualizam toate rezervarile facute de angajat");
+                                Console.WriteLine("Vizualizam locuri de parcare si a locurilor la birou");
                                 // adaugare cumva sa vad toate locurilee din parcare si companie
                                 break;
                             case 2:

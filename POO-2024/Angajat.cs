@@ -47,7 +47,6 @@ namespace POO_2024
                 if(Rezervari[i].LocRez.numar == numarLoc)
                 {
                     Rezervari.RemoveAt(i);
-
                 }
             }
         }
