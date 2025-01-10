@@ -6,9 +6,16 @@ using System.Threading.Tasks;
 
 namespace POO_2024
 {
-    internal class Angajat: User // la modificare e dificil
+    internal class Angajat
     {
-        public Angajat(string Nume): base(Nume) { }
+        public string Nume { get; set; }
+        public List<Rezervare> Rezervari;
+
+        public Angajat(string Nume)
+        {
+            this.Nume = Nume;
+            Rezervari = new List<Rezervare>();
+        }
 
         public void RezervareLoc(Loc loc)
         {
@@ -26,7 +33,7 @@ namespace POO_2024
         {
             Rezervari[indexLista-1].LocRez.numar = newNumber;
         }
-        public void StergereRezervare(int indexLista) // undeva pe aici trebuie sa eliberezi locul 
+        public void StergereRezervare(int indexLista)  
         {
             Rezervari[indexLista-1].LocRez.Elibereaza();
             Rezervari.RemoveAt(indexLista - 1);

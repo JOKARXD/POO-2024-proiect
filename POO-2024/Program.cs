@@ -7,25 +7,35 @@ public class Program
     public static void Main() // testarea UI pentru clase                                
     {
         Companie com1 = new Companie();
-        Parcare parc1 = new Parcare();
+        List<Angajat> angajats = User.GetAngajati();
 
         while (true)
         {
 
-            Console.WriteLine("Logat ca: ");
+            Console.WriteLine("Logare:");
             Console.WriteLine("1.Angajat");
             Console.WriteLine("2.Manager");
             Console.WriteLine("3.Admin");
             Console.WriteLine("0.Exit");
+   
             int optiune = Convert.ToInt32(Console.ReadLine());
             switch (optiune)
             {
                 case 1:
+                    bool ExistaAngajat;
                     Console.WriteLine("Numele angajatului: ");
                     string nume=Console.ReadLine();
-                    Angajat ang1 = new Angajat(nume);
-
-                    bool ExistaAngajat = false;
+                    int rez = User.LogAngajat(angajats, nume);
+                    if ( rez !=-1)
+                    {
+                        ExistaAngajat = false;
+                        Console.WriteLine("Loggat cu succes!");
+                    }
+                    else
+                    {
+                        ExistaAngajat = true;
+                        Console.WriteLine("Loggare fara succes!");
+                    }
                     while (!ExistaAngajat)
                     {
                         Console.WriteLine("1.Vizualizare locuri de parcare si a locurilor la birou");
@@ -36,11 +46,11 @@ public class Program
                         Console.WriteLine("6.Console Clear");
                         Console.WriteLine("0.Back to login");
                         int optiuneAngajat = Convert.ToInt32(Console.ReadLine());
-                        switch (optiuneAngajat)
+                        switch (optiuneAngajat) // totu perfect aici doar ca modificariile trebuie facute in fisierul cu parcariile si companie
                         {
                             case 1:
                                 Console.WriteLine("Vizualizam locuri de parcare si a locurilor la birou");
-                                // adaugare cumva sa vad toate locurilee din parcare si companie
+                                Parcare.ShowAll();
                                 break;
                             case 2:
                                 Console.WriteLine("La ce vrei sa faci rezervare? ");
@@ -54,37 +64,41 @@ public class Program
                                     Console.WriteLine("La ce nr doresti sa faci: ");
                                     int nrParc=Convert.ToInt32(Console.ReadLine());
                                     Loc loc = new LocParcare(nrParc);
+
+                                    angajats[rez].RezervareLoc(loc);
                                    
-                                    ang1.RezervareLoc(loc);
+                                    
                                 }else if(optiuneRez == 2)
                                 {
                                     Console.WriteLine("La ce nr doresti sa faci: ");
                                     int nrBirou = Convert.ToInt32(Console.ReadLine());
                                     Loc loc = new LocBirou(nrBirou);
 
-                                    ang1.RezervareLoc(loc);
+                                    angajats[rez].RezervareLoc(loc);
                                 }
                                 else if(optiuneRez == 3)
                                 {
                                     Console.WriteLine("La ce nr de parcare doresti sa faci: ");
                                     int nrParc = Convert.ToInt32(Console.ReadLine());
                                     Loc locP = new LocParcare(nrParc);
-                                    ang1.RezervareLoc(locP);
+                                    angajats[rez].RezervareLoc(locP);
+
 
                                     Console.WriteLine("La ce nr de birou doresti sa faci: ");
                                     int nrBirou = Convert.ToInt32(Console.ReadLine());
                                     Loc locB = new LocBirou(nrBirou);
-                                    ang1.RezervareLoc(locB);
+                                    angajats[rez].RezervareLoc(locB);
+
                                 }
                                 break;
                             case 3:
-                                
-                                ang1.VizualizareRezervari();
+
+                                angajats[rez].VizualizareRezervari();
        
                                 break;
                             case 4:
-                                
-                                ang1.VizualizareRezervari();
+
+                                angajats[rez].VizualizareRezervari();
                                 Console.WriteLine("Ce rezervare vrei sa modifici  ? ");
 
                                 int indexRez=Convert.ToInt32(Console.ReadLine());
@@ -92,24 +106,24 @@ public class Program
 
                                 int nrMod=Convert.ToInt32(Console.ReadLine());
 
-                                ang1.ModifRezervare(indexRez, nrMod);
+                                angajats[rez].ModifRezervare(indexRez, nrMod);
 
+                                angajats[rez].VizualizareRezervari();
 
-                                ang1.VizualizareRezervari();
 
                                 break;
                             case 5:
-                                
 
-                                ang1.VizualizareRezervari();
+                                angajats[rez].VizualizareRezervari();
+
                                 Console.WriteLine("Ce rezervare vrei sa stergi  ? ");
 
                                 int indexStergere = Convert.ToInt32(Console.ReadLine());
 
-                                ang1.StergereRezervare(indexStergere);
+                                angajats[rez].StergereRezervare(indexStergere);
 
 
-                                ang1.VizualizareRezervari();
+                                angajats[rez].VizualizareRezervari();
 
 
                                 break;
@@ -230,6 +244,7 @@ public class Program
                                 Console.WriteLine("Adauga angajati in echipa");
 
                                 // aici imi zice ca ang1 e null adica nu il vede ca e in alt switch case trebuie sa rezolv cumva aici
+                                    
 
                                 break;
                             case 7:
