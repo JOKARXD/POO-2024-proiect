@@ -15,9 +15,6 @@ namespace POO_2024
             string data;
             StreamReader reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Users.txt");
             data = reader.ReadLine();
-
-            try
-            {
                 while (data != null)
                 {
                     string[] parts=data.Split('|');
@@ -28,16 +25,7 @@ namespace POO_2024
                     }
                     data = reader.ReadLine();
                 }
-
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            finally
-            {
                 reader.Close();
-            }
             return listaAngajati;
         }
         /*
@@ -46,9 +34,18 @@ namespace POO_2024
 
         }
         */
+
+        /*
+         * public static List<Manager> GetManageri ()
+         * {
+         * 
+         * }
+         * 
+         * 
+         */
         public static int LogAngajat(List<Angajat> angajati,string name)
         {
-            for(int i=0;i<angajati.Count;i++)
+            for(int i=0;i<=angajati.Count;i++)
             {
                 if (angajati[i].Nume==name)
                 {

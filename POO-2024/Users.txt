@@ -1,6 +1,6 @@
 Pupaza Claudiu|A
-Tara Victor|A
-Chis Adelin|M
+Victor|A
+Adelin|M
 Adi Neata|I
 Paul|A
 Mihai|A

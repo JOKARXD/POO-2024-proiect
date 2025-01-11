@@ -9,6 +9,7 @@ public class Program
         Companie com1 = new Companie();
         List<Angajat> angajats = User.GetAngajati();
 
+
         while (true)
         {
 
@@ -26,6 +27,7 @@ public class Program
                     Console.WriteLine("Numele angajatului: ");
                     string nume=Console.ReadLine();
                     int rez = User.LogAngajat(angajats, nume);
+                    Console.WriteLine(rez);
                     if ( rez !=-1)
                     {
                         ExistaAngajat = false;
