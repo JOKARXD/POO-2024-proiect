@@ -30,16 +30,24 @@ namespace POO_2024
         }
         public static int LogAngajat(List<Angajat> angajati, string name)
         {
-            for (int i = 0; i <= angajati.Count; i++)
+            try
             {
-                if (angajati[i].Nume == name)
+                for (int i = 0; i <= angajati.Count; i++)
                 {
+                    if (angajati[i].Nume == name)
+                    {
 
-                    return i;
+                        return i;
+                    }
                 }
-            }
 
+            }
+            catch ( Exception e)
+            {
+                Console.WriteLine("Neautorizat");
+            }
             return -1;
+
         }
         public static List<Manager> GetManageri()
         {

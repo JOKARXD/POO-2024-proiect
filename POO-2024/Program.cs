@@ -8,6 +8,7 @@ public class Program
     {
         Companie com1 = new Companie();
         List<Angajat> angajats = User.GetAngajati();
+        List<Manager> manageri = User.GetManageri();
 
 
         while (true)
@@ -27,7 +28,6 @@ public class Program
                     Console.WriteLine("Numele angajatului: ");
                     string nume=Console.ReadLine();
                     int rez = User.LogAngajat(angajats, nume);
-                    Console.WriteLine(rez);
                     if ( rez !=-1)
                     {
                         ExistaAngajat = false;
@@ -159,13 +159,20 @@ public class Program
                     }
                     break;
                 case 2:
-
-                    Console.WriteLine("Numele manager: ");
+                    bool ExistaManager;
+                    Console.WriteLine("Numele angajatului: ");
                     string numeMan = Console.ReadLine();
-                    Manager man1 = new Manager(numeMan);
-
-
-                    bool ExistaManager = false;
+                    int rezMan = User.LogManager(manageri, numeMan);
+                    if (rezMan != -1)
+                    {
+                        ExistaManager = false;
+                        Console.WriteLine("Loggat cu succes!");
+                    }
+                    else
+                    {
+                        ExistaManager = true;
+                        Console.WriteLine("Loggare fara succes!");
+                    }
                     while (!ExistaManager)
                     {
                         Console.WriteLine("1.Vizualizare locuri de parcare si a locurilor la birou");
@@ -198,7 +205,7 @@ public class Program
                                     int nrParc = Convert.ToInt32(Console.ReadLine());
                                     Loc loc = new LocParcare(nrParc);
 
-                                    man1.RezervareLoc(loc);
+
                                 }
                                 else if (optiuneL == 2)
                                 {
@@ -206,7 +213,7 @@ public class Program
                                     int nrBirou = Convert.ToInt32(Console.ReadLine());
                                     Loc loc = new LocBirou(nrBirou);
 
-                                    man1.RezervareLoc(loc);
+              
                                 }
                                 else if (optiuneL == 3)
                                 {
@@ -214,25 +221,25 @@ public class Program
                                     int nrParc = Convert.ToInt32(Console.ReadLine());
                                     Loc locP = new LocParcare(nrParc);
 
-                                    man1.RezervareLoc(locP);
+                        
 
                                     Console.WriteLine("La ce nr de birou doresti sa faci: ");
                                     int nrBirou = Convert.ToInt32(Console.ReadLine());
                                     Loc locB = new LocBirou(nrBirou);
 
-                                    man1.RezervareLoc(locB);
+                       
                                 }
 
                                 break;
                             case 3:
 
                                 Console.WriteLine("Manager rezervari: ");
-                                man1.VizualizareRezervari();
+                 
 
                                 break;
                             case 4:
 
-                                man1.VizualizareRezervari();
+                   
                                 Console.WriteLine("Ce rezervare vrei sa modifici  ? ");
 
                                 int indexRez = Convert.ToInt32(Console.ReadLine());
@@ -240,23 +247,22 @@ public class Program
 
                                 int nrMod = Convert.ToInt32(Console.ReadLine());
 
-                                man1.ModifRezervare(indexRez, nrMod);
+                       
 
 
-                                man1.VizualizareRezervari();
+                   
 
                                 break;
                             case 5:
 
-                                man1.VizualizareRezervari();
+                   
                                 Console.WriteLine("Ce rezervare vrei sa stergi  ? ");
 
                                 int indexStergere = Convert.ToInt32(Console.ReadLine());
 
-                                man1.StergereRezervare(indexStergere);
+                          
 
 
-                                man1.VizualizareRezervari();
 
 
 
