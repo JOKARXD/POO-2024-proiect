@@ -7,7 +7,7 @@ using System.IO;
 
 namespace POO_2024
 {
-    internal  class User
+    internal class User
     {
         public static List<Angajat> GetAngajati()
         {
@@ -15,47 +15,64 @@ namespace POO_2024
             string data;
             StreamReader reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Users.txt");
             data = reader.ReadLine();
-                while (data != null)
+            while (data != null)
+            {
+                string[] parts = data.Split('|');
+                if (parts[1] == "A")
                 {
-                    string[] parts=data.Split('|');
-                    if (parts[1] == "A")
-                    {
-                        Angajat angajat =new Angajat(parts[0]);
-                        listaAngajati.Add(angajat);
-                    }
-                    data = reader.ReadLine();
+                    Angajat angajat = new Angajat(parts[0]);
+                    listaAngajati.Add(angajat);
                 }
-                reader.Close();
+                data = reader.ReadLine();
+            }
+            reader.Close();
             return listaAngajati;
         }
-        /*
-        public static Manager LogManager(string name)
+        public static int LogAngajat(List<Angajat> angajati, string name)
         {
-
-        }
-        */
-
-        /*
-         * public static List<Manager> GetManageri ()
-         * {
-         * 
-         * }
-         * 
-         * 
-         */
-        public static int LogAngajat(List<Angajat> angajati,string name)
-        {
-            for(int i=0;i<=angajati.Count;i++)
+            for (int i = 0; i <= angajati.Count; i++)
             {
-                if (angajati[i].Nume==name)
+                if (angajati[i].Nume == name)
                 {
-                
+
                     return i;
                 }
             }
 
             return -1;
         }
+        public static List<Manager> GetManageri()
+        {
+            List<Manager> listaManageri = new List<Manager>();
+            string data;
+            StreamReader reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Users.txt");
+            data = reader.ReadLine();
+            while (data != null)
+            {
+                string[] parts = data.Split('|');
+                if (parts[1] == "M")
+                {
+                    Manager manager = new Manager(parts[0]);
+                    listaManageri.Add(manager);
+                }
+                data = reader.ReadLine();
+            }
+            reader.Close();
+            return listaManageri;
+        }
+        public static int LogManager(List<Manager> manageri, string name)
+        {
+            for (int i = 0; i <= manageri.Count; i++)
+            {
+                if (manageri[i].Nume == name)
+                {
 
+                    return i;
+                }
+            }
+            return -1;
+        }
     }
 }
+
+
