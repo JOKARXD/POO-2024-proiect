@@ -51,7 +51,7 @@ public class Program
                         switch (optiuneAngajat) // totu perfect aici doar ca modificariile trebuie facute in fisierul cu parcariile si companie
                         {
                             case 1:
-                                Console.WriteLine("Vizualizam locuri de parcare si a locurilor la birou");
+
                                 Parcare.ShowAll();
                                 break;
                             case 2:
@@ -68,15 +68,18 @@ public class Program
                                     Loc loc = new LocParcare(nrParc);
 
                                     angajats[rez].RezervareLoc(loc);
-                                   
-                                    
-                                }else if(optiuneRez == 2)
+                                    Parcare.Update(nrParc);
+
+
+                                }
+                                else if(optiuneRez == 2)
                                 {
                                     Console.WriteLine("La ce nr doresti sa faci: ");
                                     int nrBirou = Convert.ToInt32(Console.ReadLine());
                                     Loc loc = new LocBirou(nrBirou);
 
                                     angajats[rez].RezervareLoc(loc);
+                                    
                                 }
                                 else if(optiuneRez == 3)
                                 {
@@ -84,6 +87,7 @@ public class Program
                                     int nrParc = Convert.ToInt32(Console.ReadLine());
                                     Loc locP = new LocParcare(nrParc);
                                     angajats[rez].RezervareLoc(locP);
+                                    Parcare.Update(nrParc);
 
 
                                     Console.WriteLine("La ce nr de birou doresti sa faci: ");
@@ -103,12 +107,21 @@ public class Program
                                 angajats[rez].VizualizareRezervari();
                                 Console.WriteLine("Ce rezervare vrei sa modifici  ? ");
 
+                               
+
                                 int indexRez=Convert.ToInt32(Console.ReadLine());
+
+                                int nrModf = angajats[rez].Rezervari[indexRez - 1].LocRez.numar;
+
+                                Parcare.Delete(nrModf);
+                                
                                 Console.WriteLine("Noul loc rezervat este:");
 
                                 int nrMod=Convert.ToInt32(Console.ReadLine());
 
                                 angajats[rez].ModifRezervare(indexRez, nrMod);
+
+                                Parcare.Update(nrMod);
 
                                 angajats[rez].VizualizareRezervari();
 
@@ -122,7 +135,13 @@ public class Program
 
                                 int indexStergere = Convert.ToInt32(Console.ReadLine());
 
+                                int nrSters = angajats[rez].Rezervari[indexStergere-1].LocRez.numar;
+
                                 angajats[rez].StergereRezervare(indexStergere);
+
+                                
+
+                                Parcare.Delete(nrSters);
 
 
                                 angajats[rez].VizualizareRezervari();
