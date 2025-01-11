@@ -61,8 +61,88 @@ namespace POO_2024
         }
         // create
 
-        // update
-        // delete
+
+        public static void Update(int number)
+        {
+            string data;
+            List<string> lines = new List<string>();
+            StreamReader reader = null;
+            StreamWriter writer = null;
+            try
+            {
+                reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Parcare.txt");
+                data =reader.ReadLine();
+
+                while(data != null)
+                {
+                    string[] parts=data.Split('|');
+                    int numberLoc=int.Parse(parts[0]);
+                    if(numberLoc == number) 
+                    {
+                        parts[1] = "X";
+                        data = string.Join('|', parts);
+                    }
+                    lines.Add(data);
+                    data=reader.ReadLine();
+                }
+                reader.Close();
+                writer = new StreamWriter("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Parcare.txt", false);
+                foreach (string line in lines)
+                {
+                    writer.WriteLine(line);
+                }
+
+            }
+            catch (Exception e) 
+            {
+                Console.WriteLine (e.Message);
+            }
+            finally
+            {
+                writer?.Close();
+            }
+        }
+
+        public static void Delete(int number)
+        {
+            string data;
+            List<string> lines = new List<string>();
+            StreamReader reader = null;
+            StreamWriter writer = null;
+            try
+            {
+                reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Parcare.txt");
+                data = reader.ReadLine();
+
+                while (data != null)
+                {
+                    string[] parts = data.Split('|');
+                    int numberLoc = int.Parse(parts[0]);
+                    if (numberLoc == number)
+                    {
+                        parts[1] = "O";
+                        data = string.Join('|', parts);
+                    }
+                    lines.Add(data);
+                    data = reader.ReadLine();
+                }
+                reader.Close();
+                writer = new StreamWriter("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Parcare.txt", false);
+                foreach (string line in lines)
+                {
+                    writer.WriteLine(line);
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                writer?.Close();
+            }
+        }
 
         public static void ShowAll()
         {
