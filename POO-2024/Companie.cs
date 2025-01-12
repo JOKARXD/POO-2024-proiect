@@ -26,7 +26,7 @@ namespace POO_2024
         {
             List<LocBirou> buffer = new List<LocBirou>();
             string data;
-            StreamReader reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Parcare.txt");
+            StreamReader reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Companie.txt");
             try
             {
                 data = reader.ReadLine();
@@ -70,7 +70,7 @@ namespace POO_2024
             StreamWriter writer = null;
             try
             {
-                reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Parcare.txt");
+                reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Companie.txt");
                 data = reader.ReadLine();
 
                 while (data != null)
@@ -86,7 +86,7 @@ namespace POO_2024
                     data = reader.ReadLine();
                 }
                 reader.Close();
-                writer = new StreamWriter("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Parcare.txt", false);
+                writer = new StreamWriter("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Companie.txt", false);
                 foreach (string line in lines)
                 {
                     writer.WriteLine(line);
@@ -111,7 +111,7 @@ namespace POO_2024
             StreamWriter writer = null;
             try
             {
-                reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Parcare.txt");
+                reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Companie.txt");
                 data = reader.ReadLine();
 
                 while (data != null)
@@ -127,7 +127,7 @@ namespace POO_2024
                     data = reader.ReadLine();
                 }
                 reader.Close();
-                writer = new StreamWriter("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Parcare.txt", false);
+                writer = new StreamWriter("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Companie.txt", false);
                 foreach (string line in lines)
                 {
                     writer.WriteLine(line);
@@ -150,7 +150,7 @@ namespace POO_2024
 
             foreach (LocBirou loc in buffer)
             {
-                Console.WriteLine(loc);
+                Console.Write(loc + "\n");        
             }
         }
 

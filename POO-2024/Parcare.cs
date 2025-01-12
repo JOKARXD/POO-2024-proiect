@@ -15,12 +15,50 @@ namespace POO_2024
             Console.WriteLine("Aici o sa fie desenul cu charactere si caracterrul X si O pe care o sa le iau din fisier");
         }
 
-        /*
-        public LocParcare GetLocById(int id)
+        public static int GetNrLocuri()
         {
+            return 20; // aici tot cu fisiere o sa lucrez
 
         }
-        */
+
+        public static bool LocOcupat(int numberLoc)
+        {
+            StreamReader reader = null;
+            try
+            {
+                reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Parcare.txt");
+                string data;
+                data = reader.ReadLine();
+
+                while (data!=null)
+                {
+                    string[] parts = data.Split('|');
+                    int number = int.Parse(parts[0]);
+                    if(number==numberLoc)
+                    {
+                        if (parts[1] == "X")
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    data = reader.ReadLine();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);    
+            }
+            finally
+            {
+                reader.Close();
+            }
+            return false;
+        }
+        
 
         private static List<LocParcare> GetAll()
         {
@@ -150,7 +188,8 @@ namespace POO_2024
 
             foreach (LocParcare loc in buffer)
             {
-                Console.WriteLine(loc);
+                Console.Write(loc+"\n");
+
             }
         }
 

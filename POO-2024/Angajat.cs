@@ -24,9 +24,11 @@ namespace POO_2024
         }
         public void VizualizareRezervari()
         {
+            int i = 1;
             foreach(var rez in Rezervari)
             {
-                Console.WriteLine(rez);
+                Console.WriteLine($"{i} "+ rez);
+                i++;
             }
         }
         public void ModifRezervare(int indexLista,int newNumber)
