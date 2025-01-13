@@ -12,7 +12,6 @@ public class Program
 
         while (true)
         {
-
             Console.WriteLine("Logare:");
             Console.WriteLine("1.Angajat");
             Console.WriteLine("2.Manager");
@@ -50,66 +49,92 @@ public class Program
                         int optiuneAngajat = Convert.ToInt32(Console.ReadLine());
                         switch (optiuneAngajat) // totu perfect aici doar ca modificariile trebuie facute in fisierul cu parcariile si companie
                         {
-                            case 1:
+                            case 1: 
 
                                 Parcare.ShowAll();
                                 Companie.ShowAll();
                                 break;
-                            case 2:
-                                Console.WriteLine("La ce vrei sa faci rezervare? ");
-                                Console.WriteLine("1. Loc de parcare");
-                                Console.WriteLine("2. Loc de birou");
-                                Console.WriteLine("3. Loc de parcare si loc de birou");
-                                int optiuneRez = Convert.ToInt32(Console.ReadLine());
-
-                                if (optiuneRez == 1)
+                            case 2: // Gata aici(mai trebe victor)
+                                try
                                 {
-                                    Console.WriteLine("La ce nr doresti sa faci: ");
-                                    int nrParc=Convert.ToInt32(Console.ReadLine());
-                                    if (!Parcare.LocOcupat(nrParc))
+                                    Console.WriteLine("La ce vrei sa faci rezervare? ");
+                                    Console.WriteLine("1. Loc de parcare");
+                                    Console.WriteLine("2. Loc de birou");
+                                    Console.WriteLine("3. Loc de parcare si loc de birou");
+                                    int optiuneRez = Convert.ToInt32(Console.ReadLine());
+                                    if (optiuneRez == 1)
                                     {
-                                        Loc loc = new LocParcare(nrParc);
+                                        Console.WriteLine("La ce nr doresti sa faci: ");
+                                        int nrParc;
+                                        do
+                                        {
+                                            Console.WriteLine("Limita maxila de locuri este: "+Parcare.GetNrLocuri());
+                                            nrParc = Convert.ToInt32(Console.ReadLine());
+                                        } while (nrParc > Parcare.GetNrLocuri());
+
+                                        if (!Parcare.LocOcupat(nrParc))
+                                        {
+                                            Loc loc = new LocParcare(nrParc);
+                                            angajats[rez].RezervareLoc(loc);
+                                            Parcare.Update(nrParc);
+                                        }
+                                        else
+                                        {
+                                            throw new Exception("Loc de parcare rezervat, te rugam sa alegi altceva!");
+                                        }
+                                    }
+                                    else if(optiuneRez == 2)
+                                    {
+                                        Console.WriteLine("La ce nr doresti sa faci: ");
+                                        int nrBirou;
+                                        do // Aici parcarea trebuie inlocuita cu compania , cand o sa existe acele metode in companie
+                                        {
+                                            Console.WriteLine("Limita maxima de locuri este: " + Parcare.GetNrLocuri());
+                                            nrBirou = Convert.ToInt32(Console.ReadLine());
+
+                                        } while (nrBirou > Parcare.GetNrLocuri());
+                                        Loc loc = new LocBirou(nrBirou);
+                                        // si aici trebe sa lucreze victor
                                         angajats[rez].RezervareLoc(loc);
-                                        Parcare.Update(nrParc);
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("Loc rezervat, te rugam sa alegi altceva!");
-                                    }
-                                }
-                                else if(optiuneRez == 2)
-                                {
-                                    Console.WriteLine("La ce nr doresti sa faci: ");
-                                    int nrBirou = Convert.ToInt32(Console.ReadLine());
-                                    Loc loc = new LocBirou(nrBirou);
-
-                                    angajats[rez].RezervareLoc(loc);
-                                    Companie.Update(nrBirou);
+                                        Companie.Update(nrBirou);
                                     
-                                }
-                                else if(optiuneRez == 3)
-                                {
-                                    Console.WriteLine("La ce nr de parcare doresti sa faci: ");
-                                    int nrParc = Convert.ToInt32(Console.ReadLine());
-                                    if (!Parcare.LocOcupat(nrParc))
+                                    }
+                                    else if(optiuneRez == 3)
                                     {
-                                        Loc locP = new LocParcare(nrParc);
-                                        angajats[rez].RezervareLoc(locP);
-                                        Parcare.Update(nrParc);
+                                        Console.WriteLine("La ce nr de parcare doresti sa faci: ");
+                                        int nrParc;
+                                        do
+                                        {
+                                            Console.WriteLine("Limita maxila de locuri este: " + Parcare.GetNrLocuri());
+                                            nrParc = Convert.ToInt32(Console.ReadLine());
+                                        } while (nrParc > Parcare.GetNrLocuri());
+                                        if (!Parcare.LocOcupat(nrParc))
+                                        {
+                                            Loc locP = new LocParcare(nrParc);
+                                            angajats[rez].RezervareLoc(locP);
+                                            Parcare.Update(nrParc);
+                                        }
+                                        else
+                                        {
+                                            throw new Exception("Loc de parcare rezervat, te rugam sa alegi altceva!");
+                                        }
+                                            // aici trebuie sa lucreze victor
+
+
+                                        Console.WriteLine("La ce nr de birou doresti sa faci: ");
+                                        int nrBirou = Convert.ToInt32(Console.ReadLine());
+                                        Loc locB = new LocBirou(nrBirou);
+                                        angajats[rez].RezervareLoc(locB);
+                                        Companie.Update(nrBirou);
                                     }
                                     else
                                     {
-                                        Console.WriteLine("Loc de parcare rezervat, te rugam sa alegi altceva!");
+                                        throw new Exception("Undefined option!");
                                     }
-                                    // aici trebuie sa lucreze victor
-
-
-                                    Console.WriteLine("La ce nr de birou doresti sa faci: ");
-                                    int nrBirou = Convert.ToInt32(Console.ReadLine());
-                                    Loc locB = new LocBirou(nrBirou);
-                                    angajats[rez].RezervareLoc(locB);
-                                    Companie.Update(nrBirou);
-
+                                }
+                                catch(Exception e)
+                                {
+                                    Console.WriteLine(e.Message);
                                 }
                                 break;
                             case 3:
@@ -119,73 +144,112 @@ public class Program
        
                                 break;
                             case 4:
-
-                                angajats[rez].VizualizareRezervari();
-                                Console.WriteLine("Ce rezervare vrei sa modifici  ? ");
-
-
-                                int indexRez=Convert.ToInt32(Console.ReadLine());
-
-                                int nrModf = angajats[rez].Rezervari[indexRez - 1].LocRez.numar; // la fel si aici si oriunde e asa
-
-                                if(angajats[rez].Rezervari[indexRez - 1].LocRez is LocParcare) // trebe aici modifict ca se vede nasol
+                                try
                                 {
-                                    Parcare.Delete(nrModf);
-
-                                    Console.WriteLine("Noul loc de parcare rezervat este:");
-
-                                    int nrMod = Convert.ToInt32(Console.ReadLine());
-
-                                    angajats[rez].ModifRezervare(indexRez, nrMod);
-
-                                    Parcare.Update(nrMod);
-
+                                    int nrModf;
                                     angajats[rez].VizualizareRezervari();
+                                    Console.WriteLine("Ce rezervare vrei sa modifici  ? ");
+                               
+                                    int indexRez=Convert.ToInt32(Console.ReadLine());
+                               
+                                    if (indexRez!=0 && indexRez <= angajats[rez].Rezervari.Count)
+                                    {
+                                        nrModf = angajats[rez].GetNumberFromRezervare(indexRez);
+                                    }
+                                    else
+                                    {
+                                        throw new Exception("Invalid Rezervare");
+                                    }
+
+                                    if(angajats[rez].GetLocTypeFromRezervare(indexRez) is LocParcare) 
+                                    {
+                                        Parcare.Delete(nrModf);
+
+                                        int nrModNew;
+                                        Console.WriteLine("Noul loc de parcare rezervat este:");
+
+                                        do
+                                        {
+                                            nrModNew = Convert.ToInt32(Console.ReadLine());
+                                            if (Parcare.LocOcupat(nrModNew))
+                                            {
+                                                Console.WriteLine("Acel loc este ocupat!");
+                                            }
+                                        } while (Parcare.LocOcupat(nrModNew));
+                                         
+                                        angajats[rez].ModifRezervare(indexRez, nrModNew);
+
+                                        Parcare.Update(nrModNew);
+
+                                        angajats[rez].VizualizareRezervari();
+                                    }
+                                    else if(angajats[rez].GetLocTypeFromRezervare(indexRez) is LocBirou)
+                                    {
+                                        Companie.Delete(nrModf);
+
+                                        Console.WriteLine("Noul loc de birou rezervat este:");
+
+                                        int nrModNew = Convert.ToInt32(Console.ReadLine());
+
+                                        angajats[rez].ModifRezervare(indexRez, nrModNew);
+
+                                        Companie.Update(nrModNew);
+
+                                        angajats[rez].VizualizareRezervari();
+                                    }
+                                    else
+                                    {
+                                        throw new Exception("Invalid loc");
+                                    }
                                 }
-                                else
+                                catch(Exception e)
                                 {
-                                    Companie.Delete(nrModf);
-
-                                    Console.WriteLine("Noul loc de birou rezervat este:");
-
-                                    int nrMod = Convert.ToInt32(Console.ReadLine());
-
-                                    angajats[rez].ModifRezervare(indexRez, nrMod);
-
-                                    Companie.Update(nrMod);
-
-                                    angajats[rez].VizualizareRezervari();
+                                    Console.WriteLine(e.Message);   
                                 }
-
-
-
                                 break;
                             case 5:
-
-                                angajats[rez].VizualizareRezervari();
-
-                                Console.WriteLine("Ce rezervare vrei sa stergi  ? ");
-
-                                int indexStergere = Convert.ToInt32(Console.ReadLine());
-
-                                int nrSters = angajats[rez].Rezervari[indexStergere-1].LocRez.numar;// trebuie doar sa stergi
-
-                                if (angajats[rez].Rezervari[indexStergere - 1].LocRez is LocParcare) // trebe aici modifict ca se vede nasol
+                                try
                                 {
-                                    Parcare.Delete(nrSters);
-
-                                    angajats[rez].StergereRezervare(indexStergere);
-
+                                    int nrSters;
                                     angajats[rez].VizualizareRezervari();
+                                    Console.WriteLine("Ce rezervare vrei sa stergi  ? ");
+                                    int indexStergere = Convert.ToInt32(Console.ReadLine());
+
+                                    if (indexStergere != 0 && indexStergere <= angajats[rez].Rezervari.Count)
+                                    {
+                                         nrSters = angajats[rez].GetNumberFromRezervare(indexStergere);
+                                    }
+                                    else
+                                    {
+                                        throw new Exception("Invalid Rezervare");
+                                    }
+
+                                    if (angajats[rez].GetLocTypeFromRezervare(indexStergere) is LocParcare)
+                                    { 
+                                        Parcare.Delete(nrSters);
+
+                                        angajats[rez].StergereRezervare(indexStergere);
+
+                                        angajats[rez].VizualizareRezervari();
+                                    }
+                                    else if(angajats[rez].GetLocTypeFromRezervare(indexStergere) is LocBirou)
+                                    {
+                                        Companie.Delete(nrSters);
+
+                                        angajats[rez].StergereRezervare(indexStergere);
+
+                                        angajats[rez].VizualizareRezervari();
+                                    }
+                                    else
+                                    {
+                                        throw new Exception("Invalid loc");
+                                    }
                                 }
-                                else
+                                catch(Exception e)
                                 {
-                                    Companie.Delete(nrSters);
-
-                                    angajats[rez].StergereRezervare(indexStergere);
-
-                                    angajats[rez].VizualizareRezervari();
+                                    Console.WriteLine(e.Message);
                                 }
+
                                 break;
 
                             case 6:

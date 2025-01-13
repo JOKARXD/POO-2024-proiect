@@ -8,13 +8,34 @@ namespace POO_2024
 {
     internal class Angajat
     {
-        public string Nume { get; set; }
-        public List<Rezervare> Rezervari;
+        private string nume;
+        private List<Rezervare> rezervari;
 
         public Angajat(string Nume)
         {
             this.Nume = Nume;
-            Rezervari = new List<Rezervare>();
+            rezervari = new List<Rezervare>();
+        }
+
+        public string Nume
+        {
+            get { return nume; }
+            set { nume = value; }
+        }
+        public List<Rezervare> Rezervari
+        {
+            get { return rezervari; }
+        }
+
+
+        public int GetNumberFromRezervare(int indexRezervare)
+        {
+            return Rezervari[indexRezervare-1].LocRez.numar;
+        }
+
+        public Loc GetLocTypeFromRezervare(int indexRezervare)
+        {
+            return Rezervari[indexRezervare-1].LocRez;
         }
 
         public void RezervareLoc(Loc loc)
@@ -27,7 +48,7 @@ namespace POO_2024
             int i = 1;
             foreach(var rez in Rezervari)
             {
-                Console.WriteLine($"{i} "+ rez);
+                Console.WriteLine($"{i}. "+ rez);
                 i++;
             }
         }
