@@ -100,7 +100,7 @@ public class Program
                                         int nrBirou;
                                         do 
                                         {
-                                            Console.WriteLine("Limita maxima de locuri este: " + Parcare  .GetNrLocuri());
+                                            Console.WriteLine("Limita maxima de locuri este: " + Parcare.GetNrLocuri());
                                             nrBirou = Convert.ToInt32(Console.ReadLine());
 
                                         } while (nrBirou > Parcare.GetNrLocuri());
