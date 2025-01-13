@@ -15,10 +15,28 @@ namespace POO_2024
             Console.WriteLine("Aici o sa fie desenul cu charactere si caracterrul X si O pe care o sa le iau din fisier");
         }
 
-        public static int GetNrLocuri()
+        public static int GetNrLocuriParcare()
         {
-            return 20; // aici tot cu fisiere o sa lucrez
+            var lineCount = 0;
+            var reader = File.OpenText(@"C:\Users\pykem\OneDrive\Desktop\POO-2024\POO-2024\Parcare.txt");
+            try
+            {
+                while (reader.ReadLine() != null)
+                {
+                    lineCount++;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (reader != null)
+                    reader.Close();
+            }
 
+            return lineCount;
         }
 
         public static bool LocOcupat(int numberLoc)
