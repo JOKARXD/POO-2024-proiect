@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace POO_2024
 {
@@ -16,13 +18,15 @@ namespace POO_2024
         }
         public void afisareEchipa()
         {
+            int i = 1;
             Console.WriteLine($" * {Nume}");
             foreach (Angajat ang in echipa)
             {
-                Console.WriteLine($"- {ang.Nume}");
+                Console.WriteLine($"{i}. {ang.Nume}");
+                i++;
             }
         }
-        public  void VizualizareRezervariEchipa() // sa stiu ce manager a cerut asta 
+        public  void VizualizareRezervariEchipa() 
         {
             Console.WriteLine($" * {Nume}");
             foreach (var angajat in echipa)
@@ -30,25 +34,38 @@ namespace POO_2024
                 angajat.VizualizareRezervari();  
             }
         }
-        public void ModificareRezervariEchipa( string utilizator,int index,int numar)
+        public void ModificareRezervariEchipa( Angajat angajat,int index,int numar)
         {
-            foreach (var angajat in echipa)
+            foreach (var ang in echipa)
             {
-                if (angajat.Nume == utilizator)
+                if (ang==angajat)
                 {
-                  
                     angajat.ModifRezervare(index, numar);
-
                 }
             }
         }
 
-        public void StergereRezervareEchipa(int numarLoc)
+        public void StergereRezervareEchipa(Angajat angajat, int index)
         {
-            foreach (var angajat in echipa)
+            foreach (var ang in echipa)
             {
-                angajat.StergereRezervare(numarLoc);
+                if (ang == angajat)
+                {
+                    angajat.StergereRezervare(index);
+                }
             }
+        }
+
+        public bool VerificareAngajat(Angajat angajat)
+        {
+            foreach(var ang in echipa)
+            {
+                if (ang == angajat)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
