@@ -57,14 +57,15 @@ public class Program
                         Console.WriteLine("6.Console Clear");
                         Console.WriteLine("0.Back to login");
                         int optiuneAngajat = Convert.ToInt32(Console.ReadLine());
-                        switch (optiuneAngajat) // totu perfect aici doar ca modificariile trebuie facute in fisierul cu parcariile si companie
+                        switch (optiuneAngajat) 
                         {
                             case 1: 
 
                                 Parcare.ShowAll();
                                 Companie.ShowAll();
+
                                 break;
-                            case 2: // Gata aici(mai trebe victor)
+                            case 2: 
                                 try
                                 {
                                     Console.WriteLine("La ce vrei sa faci rezervare? ");
@@ -97,14 +98,14 @@ public class Program
                                     {
                                         Console.WriteLine("La ce nr doresti sa faci: ");
                                         int nrBirou;
-                                        do // Aici parcarea trebuie inlocuita cu compania , cand o sa existe acele metode in companie
+                                        do 
                                         {
-                                            Console.WriteLine("Limita maxima de locuri este: " + Parcare.GetNrLocuri());
+                                            Console.WriteLine("Limita maxima de locuri este: " + Parcare  .GetNrLocuri());
                                             nrBirou = Convert.ToInt32(Console.ReadLine());
 
                                         } while (nrBirou > Parcare.GetNrLocuri());
                                         Loc loc = new LocBirou(nrBirou);
-                                        // si aici trebe sa lucreze victor
+                                        
                                         angajats[rez].RezervareLoc(loc);
                                         Companie.Update(nrBirou);
                                     
