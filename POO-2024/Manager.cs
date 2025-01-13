@@ -9,29 +9,36 @@ namespace POO_2024
     internal class Manager: Angajat, IManager
     {
         public List<Angajat> echipa;
+
         public Manager(string Nume) : base(Nume) 
         {
             echipa = new List<Angajat>();
         }
-        public  void AdaugareAngajat(Angajat angajat)
+        public void afisareEchipa()
         {
-            echipa.Add(angajat);
+            Console.WriteLine($" * {Nume}");
+            foreach (Angajat ang in echipa)
+            {
+                Console.WriteLine($"- {ang.Nume}");
+            }
         }
         public  void VizualizareRezervariEchipa() // sa stiu ce manager a cerut asta 
         {
+            Console.WriteLine($" * {Nume}");
             foreach (var angajat in echipa)
             {
                 angajat.VizualizareRezervari();  
             }
         }
-        public void ModificareRezervariEchipa(int indexListaAngajat, string utilizator,int newNumber)
+        public void ModificareRezervariEchipa( string utilizator,int index,int numar)
         {
             foreach (var angajat in echipa)
             {
                 if (angajat.Nume == utilizator)
                 {
-                    angajat.ModifRezervare(indexListaAngajat, newNumber);
-                    break;
+                  
+                    angajat.ModifRezervare(index, numar);
+
                 }
             }
         }

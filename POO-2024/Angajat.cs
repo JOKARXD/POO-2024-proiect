@@ -13,7 +13,7 @@ namespace POO_2024
 
         public Angajat(string Nume)
         {
-            this.Nume = Nume;
+            this.nume = Nume;
             rezervari = new List<Rezervare>();
         }
 

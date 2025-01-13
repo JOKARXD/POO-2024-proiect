@@ -17,8 +17,18 @@ public class Program
             Console.WriteLine("2.Manager");
             Console.WriteLine("3.Admin");
             Console.WriteLine("0.Exit");
-   
-            int optiune = Convert.ToInt32(Console.ReadLine());
+
+            int optiune;
+            do
+            {
+                optiune = Convert.ToInt32(Console.ReadLine());
+                if (optiune>4)
+                {
+                    Console.WriteLine("Alegeti o optiune valida!");
+                }   
+
+            } while (optiune > 4);
+
             switch (optiune)
             {
                 case 1:
@@ -68,7 +78,7 @@ public class Program
                                         int nrParc;
                                         do
                                         {
-                                            Console.WriteLine("Limita maxila de locuri este: "+Parcare.GetNrLocuri());
+                                            Console.WriteLine("Limita maxima de locuri este: "+Parcare.GetNrLocuri());
                                             nrParc = Convert.ToInt32(Console.ReadLine());
                                         } while (nrParc > Parcare.GetNrLocuri());
 
@@ -278,12 +288,13 @@ public class Program
                     }
                     while (!ExistaManager)
                     {
+                        Console.Write("\n");
                         Console.WriteLine("1.Vizualizare locuri de parcare si a locurilor la birou");
                         Console.WriteLine("2.Rezervare loc de parcare si/sau loc de birou");
                         Console.WriteLine("3.Vizualizare rezervari facute");
                         Console.WriteLine("4.Modificare rezervari facute");
                         Console.WriteLine("5.Stergere rezervari facute");
-                        Console.WriteLine("6.Adaugare angajat in echipa");
+                        Console.WriteLine("6.Afisare echipa");
                         Console.WriteLine("7.Vizualizare rezervari facute de catre echipa");
                         Console.WriteLine("8.Modificare rezervari facute de catre echipa");
                         Console.WriteLine("9.Stergere rezervari facute de catre echipa");
@@ -371,17 +382,27 @@ public class Program
 
                                 break;
                             case 6:
-                                Console.WriteLine("Adauga angajati in echipa");
+                                manageri[rezMan].echipa = angajats;
+                                manageri[rezMan].afisareEchipa();
 
-                                // aici imi zice ca ang1 e null adica nu il vede ca e in alt switch case trebuie sa rezolv cumva aici
+                                
                                     
 
                                 break;
                             case 7:
-                                Console.WriteLine("Vizualizare rezervari facute de catre echipa");
+                                
+                                manageri[rezMan].VizualizareRezervariEchipa();
+
                                 break;
                             case 8:
-                                Console.WriteLine("Modificari rezervari facute de catre echipa");
+                                Console.WriteLine("La ce angajat modificam ?");
+
+                                string numeAngajat=Console.ReadLine();
+
+                                manageri[rezMan].ModificareRezervariEchipa(numeAngajat);
+
+                                
+
                                 break;
                             case 9:
                                 Console.WriteLine("Stergere rezervari facute de catre echipa");
