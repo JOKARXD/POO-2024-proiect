@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Reflection.PortableExecutable;
 
 namespace POO_2024
 {
@@ -15,12 +16,72 @@ namespace POO_2024
             Console.WriteLine("Aici o sa fie desenul cu charactere si caracterrul X si O pe care o sa le iau din fisier");
         }
 
+        public static bool LocOcupat(int numberLoc)
+        {
+            StreamReader reader = null;
+            try
+            {
+                reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Companie.txt");
+                string data;
+                data = reader.ReadLine();
+
+                while (data != null)
+                {
+                    string[] parts = data.Split('|');
+                    int number = int.Parse(parts[0]);
+                    if (number == numberLoc)
+                    {
+                        if (parts[1] == "X")
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    data = reader.ReadLine();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                reader.Close();
+            }
+            return false;
+        }
+
         /*
         public LocParcare GetLocById(int id)
         {
 
         }
         */
+        public static int GetNrLocuriBirou()
+        {
+            var lineCount = 0;
+            var reader = File.OpenText(@"C:\Users\pykem\OneDrive\Desktop\POO-2024\POO-2024\Companie.txt");
+            try
+            {
+                while (reader.ReadLine() != null)
+                {
+                    lineCount++;
+                }
+            }
+            catch(Exception e) {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (reader != null)
+                    reader.Close();
+            }
+
+            return lineCount;
+        }
 
         private static List<LocBirou> GetAll()
         {
