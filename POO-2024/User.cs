@@ -80,6 +80,79 @@ namespace POO_2024
             }
             return -1;
         }
+        public static Admin GetAdmin()
+        {
+            Admin adm = null;
+            string data;
+            StreamReader reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Users.txt");
+            data = reader.ReadLine();
+            while (data != null)
+            {
+                string[] parts = data.Split('|');
+                if (parts[1] == "I")
+                {
+                   adm = new Admin(parts[0]);
+                    
+                }
+                data = reader.ReadLine();
+            }
+            reader.Close();
+            return adm;
+        }
+        public static bool LogAdmin(Admin adm,string name)
+        {
+            if(adm.Nume == name)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool AcceptareModificare()
+        {
+            StreamReader reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\ParolaPtModificare.txt");
+            try
+            {
+                Admin admin = GetAdmin();
+                if(admin == null)
+                {
+                    throw new Exception("Admin not found!");
+                }
+                string data;
+                data = reader.ReadLine();
+                Console.WriteLine("Pentru a modifica locul de parcare, adminul trebuie sa introduca parola: ");
+                string parola = Console.ReadLine();
+                if (parola == data)
+                {
+                   Console.WriteLine("Sunteti de acord cu aceasta modificare?[y/n]");
+                   char raspuns = Convert.ToChar(Console.ReadLine());
+                   char.ToLower(raspuns);
+                   if (raspuns == 'y')
+                   {
+                        return true;
+                   }
+                   else
+                   {
+                        return false;
+                   }
+
+                }
+                else
+                {
+                   throw new Exception("Parola gresita!");
+                }
+            }catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                
+            }
+            return false;
+            
+        }
+
     }
 }
 
