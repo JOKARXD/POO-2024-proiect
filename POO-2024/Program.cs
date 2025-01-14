@@ -60,11 +60,13 @@ public class Program
                         int optiuneAngajat = Convert.ToInt32(Console.ReadLine());
                         switch (optiuneAngajat) 
                         {
-                            case 1: 
-
+                            case 1:
+                                Console.WriteLine("------------------------PARCAREA----------------------------");
                                 Parcare.ShowAll();
+                                Console.Write("\n");
+                                Console.WriteLine("------------------------COMPANIA----------------------------");
                                 Companie.ShowAll();
-
+                                Console.Write("\n");
                                 break;
                             case 2: 
                                 try
@@ -322,8 +324,13 @@ public class Program
                         switch (optiuneManager)
                         {
                             case 1:
+                                Console.WriteLine("------------------------PARCAREA----------------------------");
                                 Parcare.ShowAll();
+                                Console.Write("\n");
+                                Console.WriteLine("------------------------COMPANIA----------------------------");
                                 Companie.ShowAll();
+                                Console.Write("\n");
+
                                 break;
                             case 2:
                                 try

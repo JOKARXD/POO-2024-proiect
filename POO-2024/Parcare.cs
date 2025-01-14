@@ -202,13 +202,77 @@ namespace POO_2024
 
         public static void ShowAll()
         {
+            List<char> caractere=new List<char>();
             List<LocParcare> buffer = GetAll();
 
             foreach (LocParcare loc in buffer)
             {
-                Console.Write(loc+"\n");
+                if (loc.EsteRezervat)
+                {
+                    caractere.Add('X');
+                }
+                else
+                {
+                    caractere.Add('O');
+                }
+            }
+           DrawPark(caractere);
+        }
+        private static void DrawPark(List<char> caractere)
+        {
+            int i = 1;
+            foreach (var _ in caractere)
+            {
+                Console.Write("+---");
+            }
+            Console.WriteLine("+");
+
+            foreach (var _ in caractere)
+            {
+                if (i < 10)
+                {
+                    Console.Write($"|{i}  ");
+                    i++;
+                }
+                else if (i < 99)
+                {
+                    Console.Write($"|{i} ");
+                    i++;
+                }
+                else
+                {
+                    Console.Write($"|{i}");
+                    i++;
+                }
 
             }
+            Console.WriteLine("|");
+
+            foreach (var _ in caractere)
+            {
+                Console.Write("|   ");
+            }
+            Console.WriteLine("|");
+
+            foreach (var status in caractere)
+            {
+                Console.Write($"| {status} ");
+            }
+            Console.WriteLine("|");
+
+            foreach (var _ in caractere)
+            {
+                Console.Write("|   ");
+            }
+            Console.WriteLine("|");
+
+            foreach (var _ in caractere)
+            {
+                Console.Write("+---");
+            }
+            Console.WriteLine("+");
+
+            
         }
 
     }
