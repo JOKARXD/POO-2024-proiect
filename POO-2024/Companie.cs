@@ -11,17 +11,13 @@ namespace POO_2024
     internal class Companie
     {
 
-        public static void VizualizareLocuri()
-        {
-            Console.WriteLine("Aici o sa fie desenul cu charactere si caracterrul X si O pe care o sa le iau din fisier");
-        }
 
         public static bool LocOcupat(int numberLoc)
         {
             StreamReader reader = null;
             try
             {
-                reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Companie.txt");
+                reader = new StreamReader("Companie.txt");
                 string data;
                 data = reader.ReadLine();
 
@@ -54,16 +50,10 @@ namespace POO_2024
             return false;
         }
 
-        /*
-        public LocParcare GetLocById(int id)
-        {
-
-        }
-        */
         public static int GetNrLocuriBirou()
         {
             var lineCount = 0;
-            var reader = File.OpenText(@"C:\Users\pykem\OneDrive\Desktop\POO-2024\POO-2024\Companie.txt");
+            var reader = File.OpenText(@"Companie.txt");
             try
             {
                 while (reader.ReadLine() != null)
@@ -87,7 +77,7 @@ namespace POO_2024
         {
             List<LocBirou> buffer = new List<LocBirou>();
             string data;
-            StreamReader reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Companie.txt");
+            StreamReader reader = new StreamReader("Companie.txt");
             try
             {
                 data = reader.ReadLine();
@@ -120,7 +110,6 @@ namespace POO_2024
 
 
         }
-        // create pentru locuri in plus
 
 
         public static void Update(int number)
@@ -131,7 +120,7 @@ namespace POO_2024
             StreamWriter writer = null;
             try
             {
-                reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Companie.txt");
+                reader = new StreamReader("Companie.txt");
                 data = reader.ReadLine();
 
                 while (data != null)
@@ -147,7 +136,7 @@ namespace POO_2024
                     data = reader.ReadLine();
                 }
                 reader.Close();
-                writer = new StreamWriter("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Companie.txt", false);
+                writer = new StreamWriter("Companie.txt", false);
                 foreach (string line in lines)
                 {
                     writer.WriteLine(line);
@@ -172,7 +161,7 @@ namespace POO_2024
             StreamWriter writer = null;
             try
             {
-                reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Companie.txt");
+                reader = new StreamReader("Companie.txt");
                 data = reader.ReadLine();
 
                 while (data != null)
@@ -188,7 +177,7 @@ namespace POO_2024
                     data = reader.ReadLine();
                 }
                 reader.Close();
-                writer = new StreamWriter("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Companie.txt", false);
+                writer = new StreamWriter("Companie.txt", false);
                 foreach (string line in lines)
                 {
                     writer.WriteLine(line);

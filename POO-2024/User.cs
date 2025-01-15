@@ -14,7 +14,8 @@ namespace POO_2024
         {
             List<Angajat> listaAngajati = new List<Angajat>();
             string data;
-            StreamReader reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Users.txt");
+            string path = "Users.txt";
+            StreamReader reader = new StreamReader(path);
             data = reader.ReadLine();
             while (data != null)
             {
@@ -54,7 +55,8 @@ namespace POO_2024
         {
             List<Manager> listaManageri = new List<Manager>();
             string data;
-            StreamReader reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Users.txt");
+            string path = "Users.txt";
+            StreamReader reader = new StreamReader(path);
             data = reader.ReadLine();
             while (data != null)
             {
@@ -85,7 +87,8 @@ namespace POO_2024
         {
             Admin adm = null;
             string data;
-            StreamReader reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Users.txt");
+            string path = "Users.txt";
+            StreamReader reader = new StreamReader(path);
             data = reader.ReadLine();
             while (data != null)
             {

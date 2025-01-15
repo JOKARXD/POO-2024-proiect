@@ -10,15 +10,11 @@ namespace POO_2024
     internal class  Parcare 
     {
 
-        public static void VizualizareLocuri()
-        {
-            Console.WriteLine("Aici o sa fie desenul cu charactere si caracterrul X si O pe care o sa le iau din fisier");
-        }
 
         public static int GetNrLocuriParcare()
         {
             var lineCount = 0;
-            var reader = File.OpenText(@"C:\Users\pykem\OneDrive\Desktop\POO-2024\POO-2024\Parcare.txt");
+            var reader = File.OpenText("Parcare.txt");
             try
             {
                 while (reader.ReadLine() != null)
@@ -44,7 +40,7 @@ namespace POO_2024
             StreamReader reader = null;
             try
             {
-                reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Parcare.txt");
+                reader = new StreamReader("Parcare.txt");
                 string data;
                 data = reader.ReadLine();
 
@@ -82,7 +78,7 @@ namespace POO_2024
         {
             List<LocParcare> buffer = new List<LocParcare>();
             string data;
-            StreamReader reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Parcare.txt");
+            StreamReader reader = new StreamReader("Parcare.txt");
             try
             {
                 data = reader.ReadLine();
@@ -115,7 +111,7 @@ namespace POO_2024
 
             
         }
-        // create
+
 
 
         public static void Update(int number)
@@ -126,7 +122,7 @@ namespace POO_2024
             StreamWriter writer = null;
             try
             {
-                reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Parcare.txt");
+                reader = new StreamReader("Parcare.txt");
                 data =reader.ReadLine();
 
                 while(data != null)
@@ -142,7 +138,7 @@ namespace POO_2024
                     data=reader.ReadLine();
                 }
                 reader.Close();
-                writer = new StreamWriter("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Parcare.txt", false);
+                writer = new StreamWriter("Parcare.txt", false);
                 foreach (string line in lines)
                 {
                     writer.WriteLine(line);
@@ -167,7 +163,7 @@ namespace POO_2024
             StreamWriter writer = null;
             try
             {
-                reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Parcare.txt");
+                reader = new StreamReader("Parcare.txt");
                 data = reader.ReadLine();
 
                 while (data != null)
@@ -183,7 +179,7 @@ namespace POO_2024
                     data = reader.ReadLine();
                 }
                 reader.Close();
-                writer = new StreamWriter("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\Parcare.txt", false);
+                writer = new StreamWriter("Parcare.txt", false);
                 foreach (string line in lines)
                 {
                     writer.WriteLine(line);
