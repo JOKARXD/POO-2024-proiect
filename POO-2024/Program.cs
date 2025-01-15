@@ -1,6 +1,4 @@
-﻿
-
-using POO_2024;
+﻿using POO_2024;
 
 public class Program
 {
@@ -1152,7 +1150,7 @@ public class Program
                     }
                     break;
                 case 0:
-                    Environment.Exit(0);
+                        Environment.Exit(0);
                     break;
                 default:
                     Console.WriteLine("Nu poti alegere altceva!");

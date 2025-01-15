@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using DotNetEnv;
 
 namespace POO_2024
 {
@@ -110,47 +111,46 @@ namespace POO_2024
 
         public static bool AcceptareModificare()
         {
-            StreamReader reader = new StreamReader("C:\\Users\\pykem\\OneDrive\\Desktop\\POO-2024\\POO-2024\\ParolaPtModificare.txt");
             try
             {
-                Admin admin = GetAdmin();
-                if(admin == null)
-                {
-                    throw new Exception("Admin not found!");
-                }
-                string data;
-                data = reader.ReadLine();
-                Console.WriteLine("Pentru a modifica locul de parcare, adminul trebuie sa introduca parola: ");
-                string parola = Console.ReadLine();
-                if (parola == data)
-                {
-                   Console.WriteLine("Sunteti de acord cu aceasta modificare?[y/n]");
-                   char raspuns = Convert.ToChar(Console.ReadLine());
-                   char.ToLower(raspuns);
-                   if (raspuns == 'y')
-                   {
-                        return true;
-                   }
-                   else
-                   {
-                        return false;
-                   }
+                    Admin admin = GetAdmin();
+                    if(admin == null)
+                    {
+                        throw new Exception("Admin not found!");
+                    }
+                    Env.Load(".env");
+                    string data;
+                    data = System.Environment.GetEnvironmentVariable("PASSWORD");
+                    if (data == null)
+                    {
+                       throw new Exception("Null data");
+                    }
+                    Console.WriteLine("Pentru a modifica locul de parcare, adminul trebuie sa introduca parola: ");
+                    string parola = Console.ReadLine();
+                    if (parola == data)
+                    {
+                       Console.WriteLine("Sunteti de acord cu aceasta modificare?[y/n]");
+                       char raspuns = Convert.ToChar(Console.ReadLine());
+                       char.ToLower(raspuns);
+                       if (raspuns == 'y')
+                       {
+                            return true;
+                       }
+                       else
+                       {
+                            return false;
+                       }
 
-                }
-                else
-                {
-                   throw new Exception("Parola gresita!");
-                }
-            }catch(Exception e)
+                    }
+                    else
+                    {
+                       throw new Exception("Parola gresita!");
+                    }
+            }catch(Exception e) 
             {
                 Console.WriteLine(e.Message);
             }
-            finally
-            {
-                
-            }
             return false;
-            
         }
 
     }
